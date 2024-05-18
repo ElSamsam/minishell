@@ -1,0 +1,28 @@
+
+- parsing
+	- readline returns what it's read
+	- quotes
+		- simple quotes
+		- double quotes
+		- parasite quotes
+		- while in between start_quote and end_quote, all alphanum characters make up a single word, until space (' ') shows up
+			- examples : 'e''c''h''o' == echo , after clean-up
+						'
+			- if space appears within word (or at least CMD), error command not found
+			- "Bash does not have any predefined commands composed of two words"
+	- env_var expand
+		- what if they contain quotes or redirections
+
+	- redirections
+
+	- tokens
+	- line formatting
+
+- for exec 
+	- what output (my job) is Alex expecting as input to process commands correctly ?
+
+- builtins
+	- them boys ya know
+
+- signals
+	- keyboard input: sigaction();
