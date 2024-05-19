@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   I_clean_str.c                                    :+:      :+:    :+:   */
+/*   1_big_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 15:19:28 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/19 01:50:35 by saperrie         ###   ########.fr       */
+/*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
+/*   Updated: 2024/05/20 01:54:19 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
 
-bool	clean_input(char **str)
+void	big_parse(t_line *line, char **input)
 {
-	skip_white_spaces((const char **)&str);
-	if (!*str)
-		return (false);
-	// printf("EARFQUAKE\n");
-	if (!quotes(*str))
-		return (false);
-	if (redir_into_redir(*str))
-		return (printf("zanzibar\n"), false);
-	return (true);
+	char	*str;
+
+	str = *input;
+	clean_input(&str);
+	// lex(str, line);
+	// expand(input);
+	// parse(input);
+	// check_path(intput);
 }

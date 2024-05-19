@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/19 18:22:50 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 00:52:32 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ bool	even_quotes(char *str);
 // QUOTES
 
 // REDIRECTIONS
-bool	redir_into_null(const char *str);
-bool	redir_into_redir(const char *str);
-short	is_redirection_operator(const char *str);
-bool	skip_redirection_operator(const char **str);
+bool	good_redirections(char *str);
+char	bad_redirection(const char *str);
+bool	is_valid_fd_name(char c);
+char	is_redirection_operator(const char *str);
+char	skip_redirection_operator(const char **str);
 // REDIRECTIONS
 
-bool	skip_redirection_operator(const char **str);
 // short	count_redirection_operators(const char *input);
 
 // =================================== PARSING ================================

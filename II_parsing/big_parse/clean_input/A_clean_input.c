@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   I_clean_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 06:39:58 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 01:54:12 by saperrie         ###   ########.fr       */
+/*   Created: 2024/05/17 15:19:28 by saperrie          #+#    #+#             */
+/*   Updated: 2024/05/19 01:50:35 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "./I_header/minishell.h"
-#include <unistd.h>
+#include "../../../I_header/minishell.h"
 
-int	main(void)
+bool	clean_input(char **str)
 {
-	char	*str;
-	t_line	line;
-
-	while (13)
-	{
-		str = readline(">> minishell ");
-		if (str)
-		{
-			add_history(str);
-			big_parse(&line, &str);
-			if (*str)
-				free(str);
-		}
-		else
-			printf("%s: command not found\n", str);
-	}
-	return (0);
+	skip_white_spaces((const char **)str);
+	if (!*str)
+		return (false);
+	if (!quotes(*str))
+		return (false);
+	if (!good_redirections(*str))
+		return (false);
+	return (true);
 }

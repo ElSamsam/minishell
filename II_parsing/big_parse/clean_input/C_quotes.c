@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3_quotes.c                                         :+:      :+:    :+:   */
+/*   C_quotes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:07:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/19 18:22:37 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 01:52:22 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../I_header/minishell.h"
+#include "../../../I_header/minishell.h"
 #include <stdbool.h>
 
-// =================================== QUOTES =================================
 // static char	*turn_quote_content_negative(char *str)
 // {
 // 	;
@@ -57,4 +56,3 @@ bool	quotes(char *str)
 		return (printf("parsing error: missing quote\n"), false);
 	return (true);
 }
-// =================================== QUOTES =================================

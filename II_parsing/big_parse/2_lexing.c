@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_big_parse.c                                      :+:      :+:    :+:   */
+/*   2_lexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/19 18:22:37 by saperrie         ###   ########.fr       */
+/*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
+/*   Updated: 2024/05/20 01:56:34 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
-#include <unistd.h>
 
-// static void	ft_echo(char *str)
+// static short	make_tokens(char *input, t_line *line, int i)
 // {
-// 	if (*str == 'e' && *str + 1 == 'c' && *str + 2 == 'h' && *str + 3 == 'o')
+// 	size_t	len;
+
+// 	skip_white_spaces(&input);
+// 	while (*input && !is_white_space(*input))
 // 	{
-// 		char *const *double_ptr = &str;
-// 		execve("bin/echo", double_ptr, NULL);
+// 		len = len_to_next_white_space(input);
+// 		line->cmd->arr[i++] = ft_substr(input, 0, len);
 // 	}
 // }
 
-void	big_parse(t_line *line, char **input)
+void	lex(char *input, t_line *line)
 {
-	// tokenise(line, input);
-	// ft_echo(input);
-	clean_input(input);
-	// lex(str, line);
-	// expand(input);
-	// parse(input);
-	// check_path(intput);
+	// make_tokens(input, line, 0);
+	// clean_parasite_quotes(input);
+	// mark_dollar_for_interp(input);
+	// split_bis();
 }
