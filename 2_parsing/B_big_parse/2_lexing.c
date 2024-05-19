@@ -6,11 +6,13 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/17 16:29:08 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:22:08 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+// =================================== QUOTES =================================
 
 static char	*find_matching_quote(char *str, char quote)
 {
@@ -44,16 +46,19 @@ static short	even_quotes(char *str)
 	return (1);
 }
 
-static short	is_white_space(char c)
+// =================================== QUOTES =================================
+
+// =================================== W_SPACE ================================
+
+short	is_white_space(char c)
 {
-	if (c == '\f' || c == '\n' || c == '\t' 
-		|| c == '\v' || c == '\r' || c == ' ')
+	if (c == ' ' || c == '\t')
 		return (1);
 	else
 		return (0);
 }
 
-static void	skip_white_spaces(char **input)
+void	skip_white_spaces(const char **input)
 {
 	if (!*input || !**input)
 		return ;
@@ -73,6 +78,8 @@ static size_t	len_to_next_white_space(char *input)
 	}
 	return (len);
 }
+
+// =================================== W_SPACE ================================
 
 // static short	make_tokens(char *input, t_line *line, int i)
 // {

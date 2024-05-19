@@ -39,8 +39,8 @@ however if invalid infile, stop there.
 
 ALEXIE EXPECTS ASAP : 
 CMD FLAG ARG
-CMD FLAG ARG REDIR
-REDIR CMD FLAG ARG
+CMD FLAG ARG REDIR FILE
+REDIR FILE CMD FLAG ARG
 
 
 
@@ -49,7 +49,7 @@ clean_input
 	redir into redir
 		'< inf' '<< heredoc' '> outf' '>> outf' is fine
 		'<>' syntax error near expected token 'newline'
-		'<> outfile' creat outfile
+		!! '<> outfile' create outfile !!
 		'< <' is not fine ("redir wspace redir" is fucked)
 		>< is fucked | >>< is fucked | 
 			redir requires associated fd directly after
