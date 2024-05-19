@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2  quotes.c                                        :+:      :+:    :+:   */
+/*   3_quotes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:07:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/19 00:09:51 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:22:37 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../I_header/minishell.h"
+#include <stdbool.h>
 
 // =================================== QUOTES =================================
-static char	*find_matching_quote(char *str, char quote)
+// static char	*turn_quote_content_negative(char *str)
+// {
+// 	;
+// }
+
+char	*find_matching_quote(char *str, char quote)
 {
 	while (*str)
 	{
@@ -24,7 +30,7 @@ static char	*find_matching_quote(char *str, char quote)
 	return (NULL);
 }
 
-static bool	even_quotes(char *str)
+bool	even_quotes(char *str)
 {
 	while (*str)
 	{
@@ -42,6 +48,13 @@ static bool	even_quotes(char *str)
 		}
 		str++;
 	}
+	return (true);
+}
+
+bool	quotes(char *str)
+{
+	if (!even_quotes(str))
+		return (printf("parsing error: missing quote\n"), false);
 	return (true);
 }
 // =================================== QUOTES =================================
