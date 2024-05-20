@@ -6,13 +6,14 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 01:55:54 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:36:27 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+// #include "../minishell.h"
 
-void	parse(char *input)
-{
-	tag_slots(input);
-}
+// void	parse(char *input)
+// {
+// 	tag_slots(input);
+// }
+	// clean_parasite_quotes(input);

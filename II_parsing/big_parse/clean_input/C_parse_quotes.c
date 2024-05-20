@@ -6,12 +6,11 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:07:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 01:52:22 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 05:05:55 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../I_header/minishell.h"
-#include <stdbool.h>
 
 // static char	*turn_quote_content_negative(char *str)
 // {

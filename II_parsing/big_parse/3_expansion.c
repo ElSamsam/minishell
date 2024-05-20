@@ -6,13 +6,13 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:49:30 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 01:55:47 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:36:30 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+// #include "../minishell.h"
 
-void	expand(char *env_var, t_line *line)
-{
-	expanception(env_var, line->env);
-}
+// void	expand(char *env_var, t_line *line)
+// {
+// 	expanception(env_var, line->env);
+// }

@@ -6,28 +6,17 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 01:56:34 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:47:22 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
-
-// static short	make_tokens(char *input, t_line *line, int i)
-// {
-// 	size_t	len;
-
-// 	skip_white_spaces(&input);
-// 	while (*input && !is_white_space(*input))
-// 	{
-// 		len = len_to_next_white_space(input);
-// 		line->cmd->arr[i++] = ft_substr(input, 0, len);
-// 	}
-// }
+#include <stdbool.h>
 
 void	lex(char *input, t_line *line)
 {
-	// make_tokens(input, line, 0);
-	// clean_parasite_quotes(input);
+	if (!make_tokens(input, line))
+		printf("BAD_TOKEN\n");/*, free_all_this_bs(line)*/;
 	// mark_dollar_for_interp(input);
 	// split_bis();
 }

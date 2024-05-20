@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 06:39:58 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 01:54:12 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:33:03 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <readline/history.h>
 #include "./I_header/minishell.h"
 #include <unistd.h>
+#include <stdbool.h>
 
 int	main(void)
 {
@@ -35,5 +36,6 @@ int	main(void)
 		else
 			printf("%s: command not found\n", str);
 	}
+	rl_clear_history();
 	return (0);
 }
