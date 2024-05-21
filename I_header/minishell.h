@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 23:38:05 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:37:23 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_redir
 typedef struct s_cmd
 {
 	char			**arg;
-	t_redir			*in_out;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }	t_cmd;
@@ -64,6 +63,7 @@ typedef struct s_line
 	int		argc;
 	t_cmd	*cmd;
 	char	**env;
+	t_redir	*in_out;
 }	t_line;
 
 // =================================== PARSING ================================

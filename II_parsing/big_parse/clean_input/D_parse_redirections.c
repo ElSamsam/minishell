@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   D_redirections.c                                   :+:      :+:    :+:   */
+/*   D_parse_redirections.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:21:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 05:06:54 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:38:05 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ bool	good_redirections(char *str)
 	char	return_value;
 
 	return_value = bad_redirection(str);
-	if (!is_valid_fd_name(return_value))
-		return (printf("redir into %c\n", return_value), false);
-	else if (return_value == 1)
+	if (return_value == 1)
 		return (printf("redir into <\n"), false);
 	else if (return_value == 2)
 		return (printf("redir into >\n"), false);
@@ -91,5 +89,7 @@ bool	good_redirections(char *str)
 		return (printf("redir into <<\n"), false);
 	else if (return_value == 5)
 		return (printf("redir into null\n"), false);
+	else if (!is_valid_fd_name(return_value))
+		return (printf("redir into %c\n", return_value), false);
 	return (true);
 }

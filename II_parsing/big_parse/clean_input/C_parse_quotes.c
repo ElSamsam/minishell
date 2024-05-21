@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   C_quotes.c                                         :+:      :+:    :+:   */
+/*   C_parse_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:07:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 05:05:55 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:40:33 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ bool	even_quotes(char *str)
 bool	quotes(char *str)
 {
 	if (!even_quotes(str))
-		return (printf("parsing error: missing quote\n"), false);
+		return (printf("minishell: parsing error: missing quote\n"), false);
 	return (true);
 }
