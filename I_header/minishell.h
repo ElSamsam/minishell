@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/21 16:37:23 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 01:12:14 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include <stdbool.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include "../III_libft_improved/src/libft.h"
 
 enum e_TOKENS
@@ -36,14 +37,6 @@ enum e_REDIR_OPERATOR
 	HEREDOC_OPERATOR,
 };
 
-typedef struct s_argv
-{
-	int				node_index;
-	char			*av;
-	struct s_argv	*next;
-	struct s_argv	*prev;
-}	t_argv;
-
 typedef struct s_redir
 {
 	int					type;
@@ -57,6 +50,14 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }	t_cmd;
 
+typedef struct s_argv
+{
+	int				node_index;
+	char			*av;
+	struct s_argv	*next;
+	struct s_argv	*prev;
+}	t_argv;
+
 typedef struct s_line
 {
 	t_argv	*argv;
@@ -69,9 +70,9 @@ typedef struct s_line
 // =================================== PARSING ================================
 
 int		main(void);
-void	big_parse(t_line *line, char **input);
+bool	big_parse(t_line *line, char **input);
 bool	clean_input(char **input);
-void	lex(char *input, t_line *line);
+bool	lex(char *input, t_line *line);
 
 // W_SPACE
 bool	is_white_space(char c);
@@ -84,9 +85,17 @@ char	*find_matching_quote(char *str, char quote);
 bool	even_quotes(char *str);
 // QUOTES
 
-// TOKENS
-bool	make_tokens(char *input, t_line *line);
-// TOKENS
+// TOKENS_UTILS
+bool	is_quote(char c, char quote);
+bool	is_arg_format(char c);
+char	*quote_mode(char *str, char quote, size_t *length);
+char	*skip_quote_content(char *str, char quote, size_t *length);
+// TOKENS_UTILS
+
+// STRUCT
+t_line	*init_t_line_argv(const char *input, size_t len, t_line *line);
+t_line	*make_t_line_argv_node(const char *input, size_t len, t_line *line);
+// STRUCT
 
 // REDIRECTIONS
 bool	good_redirections(char *str);

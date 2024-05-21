@@ -6,17 +6,11 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 06:39:58 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 23:33:03 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 22:13:51 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
 #include "./I_header/minishell.h"
-#include <unistd.h>
-#include <stdbool.h>
 
 int	main(void)
 {
