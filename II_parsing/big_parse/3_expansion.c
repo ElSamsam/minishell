@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:49:30 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 05:49:40 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 22:04:02 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,44 +47,41 @@ static bool	is_env_var_name_format(char c)
 
 static void	true_expand(t_line *line)
 {
-	while ("line->argv->av")
-	{
-		if ("I find $")
-			var = "get_var_from_envp";
-			if (!var)
-				echo "env_var not found";
-				return ;
-			else
-				ft_str_append(line->argv->av, var);
-			line->argv->av += 1;
-	}
+	// char	*var;
+	// char	*cpy;
+
+	// cpy = line->argv->av + 2;
+	// while (is_env_var_name_format(cpy))
+		// cpy++;
+	// if (!cpy || !*cpy)	?
+		// return (false); ?
+	// var = get_var_from_envp();
+	// if (!var)
+	// 	return ((void)printf("env_var not found"));
+	// ft_str_append(line->argv->av, var);
 }
 
 static bool	handle_dollar_sign(t_line *line)
 {
-	line->argv->av += 1;
-	if ((*line->argv->av && (!is_env_var_name_format(*line->argv->av))
-			|| !*line->argv->av))
+	// line->argv->av += 1;
+	if ((*line->argv->av && !is_env_var_name_format(*(line->argv->av + 1)))
+		|| !*line->argv->av)
 		return (false);
-	line->argv->av += 1;
-	true_expand(line);
+	// line->argv->av += 1;
+	// true_expand(line);
 	return (false);
 }
 // ================================ EXPAND_UTILS ==============================
 
 bool	expand(t_line *line)
 {
-	size_t	i;
-
-	while (line->argv)
+	while (line->argv++)
 	{
-		i = 0;
-		while (line->argv->av[i])
+		while (*line->argv->av++)
 		{
-			if (line->argv->av[i] == '$')
-				handle_dollar_sign(line);
-			else
-				i += 1;
+			if (*line->argv->av == '$')
+				if (!handle_dollar_sign(line))
+					return (false);
 		}
 		line->argv->av += 1;
 	}

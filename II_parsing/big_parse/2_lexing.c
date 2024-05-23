@@ -6,11 +6,46 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 05:12:23 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:32:21 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
+
+// TODO turn this function into two
+t_line	*make_t_line_argv_node(const char *input, size_t len, t_line *line)
+{
+	t_argv	*next_node;
+
+	if (!line->argc++)
+	{
+		line->argv = malloc(sizeof(t_argv));
+		if (!line->argv)
+			return (NULL);
+		line->lst_head = line->argv;
+		line->argv->prev = NULL;
+		line->argv->next = NULL;
+		line->argv->node_index = line->argc - 1;
+		line->argv->av = ft_substr((const char *)input, 0, len);
+		if (!line->argv->av)
+			return (NULL);
+	}
+	else
+	{
+		next_node = malloc(sizeof(t_argv));
+		if (!next_node)
+			return (NULL);
+		next_node->prev = line->argv;
+		line->argv->next = next_node;
+		line->argv = next_node;
+		line->argv->next = NULL;
+		line->argv->node_index = line->argc - 1;
+		line->argv->av = ft_substr((const char *)input, 0, len);
+		if (!line->argv->av)
+			return (NULL);
+	}
+	return (line);
+}
 
 static char	*fill_argv(const char *input, t_line *line, size_t token_len)
 {

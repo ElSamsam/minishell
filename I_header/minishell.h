@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 03:59:39 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:34:46 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ enum e_REDIR_OPERATOR
 
 typedef struct s_redir
 {
-	int					type;
-	char				*arg;
+	int					redir_type;
+	char				*file_name;
 }	t_redir;
 
 typedef struct s_cmd
@@ -61,6 +61,7 @@ typedef struct s_argv
 typedef struct s_line
 {
 	t_argv	*argv;
+	t_argv	*lst_head;
 	int		argc;
 	char	token_index;
 	t_cmd	*cmd;
@@ -74,6 +75,7 @@ int			main(int argc, char *argv[], char *exp[]);
 bool		big_parse(t_line *line, char **input);
 bool		clean_input(const char **input);
 bool		lex(const char *input, t_line *line);
+bool		parse(t_line *line);
 
 // W_SPACE
 bool		is_white_space(char c);
@@ -88,8 +90,6 @@ bool		even_quotes(const char *str);
 
 // TOKENS_UTILS
 bool		is_quote(char c, char quote);
-bool		is_arg_format(char c);
-char		*quote_mode(char *str, char quote, size_t *length);
 const char	*skip_quote_content(const char *str, char quote);
 // TOKENS_UTILS
 
@@ -103,7 +103,7 @@ t_line		*make_t_line_argv_node(const char *input, size_t len, t_line *line);
 
 // REDIRECTIONS
 bool		good_redirections(const char *str);
-char		bad_redirection(const char *str);
+const char		*bad_redirection(const char *str);
 bool		is_valid_fd_name(char c);
 char		is_redirection_operator(const char *str);
 char		skip_redirection_operator(const char **str);

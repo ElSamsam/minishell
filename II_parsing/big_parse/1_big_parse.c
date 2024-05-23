@@ -6,18 +6,15 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 02:29:56 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:26:30 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
 
-// TODO install todo tree / fix it
-
 bool	big_parse(t_line *line, char **input)
 {
 	char	*str;
-
 	if (!*input || !input)
 		return (false);
 	skip_white_spaces((const char **)input);
@@ -30,13 +27,14 @@ bool	big_parse(t_line *line, char **input)
 		return (write(1, "BAD_INPUT\n", 11), false);
 	if (lex((const char *)str, line))
 		printf("GOOD_LEX\n");
-	else
-		return (printf("BAD_LEX\n"), false);
+	if (parse(line))
+		printf("GOOD_PARSE\n");
+	// else
+		// return (printf("BAD_LEX\n"), false);
 		// if (expand(line))
-	// 	printf("CASH_MONEY\nargc = %i\n", line->argc);
+		// printf("CASH_MONEY\nargc = %i\n", line->argc);
 	// else
 	// 	return (printf("BROKE_ASS\n"), false);
-		// parse(input);
 		// check_path(intput);
 	return (true);
 }
