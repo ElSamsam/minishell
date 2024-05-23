@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 02:22:40 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 03:59:39 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ bool		even_quotes(const char *str);
 bool		is_quote(char c, char quote);
 bool		is_arg_format(char c);
 char		*quote_mode(char *str, char quote, size_t *length);
-const char	*skip_quote_content(const char *str, char quote, size_t *length);
+const char	*skip_quote_content(const char *str, char quote);
 // TOKENS_UTILS
 
 // EXPANSION

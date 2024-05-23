@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:21:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 00:18:08 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 04:16:50 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ char	is_redirection_operator(const char *str)
 
 bool	is_valid_fd_name(char c)
 {
-	if (ft_isalnum((int)c) || c == '_' || c == '.' || c == '-' || c == '/')
+	if (ft_isalnum((int)c) || c == '_' || c == '.' || c == '-' || c == '/'
+		|| c == '$')
 		return (true);
 	return (false);
 }
 
+// THIS IS GONNA HANDLE ACCESS() TO FD IN THE FUTURE
 char	bad_redirection(const char *str)
 {
 	while (*str)
@@ -58,15 +60,13 @@ char	bad_redirection(const char *str)
 			if (!*str)
 				return (5);
 			if (is_redirection_operator(str))
-			{
 				return (is_redirection_operator(str));
-			}
 			else if (!is_valid_fd_name(*str))
 				return (*str);
 			while (is_valid_fd_name(*str))
 				str++;
 		}
-		else if (*str == ' ' || *str == '\t')
+		else if (is_white_space(*str))
 			skip_white_spaces(&str);
 		else
 			str++;

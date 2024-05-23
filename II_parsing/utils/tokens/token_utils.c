@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 00:51:52 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 03:59:26 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,10 @@ bool	is_quote(char c, char quote)
 	return (false);
 }
 
-const char	*skip_quote_content(const char *str, char quote, size_t *length)
+const char	*skip_quote_content(const char *str, char quote)
 {
 	str += 1;
-	*length += 1;
 	while (*str && !is_quote(*str, quote))
-	{
 		str++;
-		*length += 1;
-	}
-	*length += 1;
 	return (str + 1);
 }

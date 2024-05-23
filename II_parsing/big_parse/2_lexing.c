@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 02:30:56 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 05:12:23 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,26 @@ static char	*fill_argv(const char *input, t_line *line, size_t token_len)
 	return ((char *)input);
 }
 
-static	const char	*tokenise_arg(const char *input, t_line *line)
+static	const char	*tokenise_argv(const char *input, t_line *line)
 {
-	size_t		token_length;
 	const char	*ptr_cpy;
 
-	token_length = 0;
 	ptr_cpy = input;
-	while (*ptr_cpy && !is_white_space(*ptr_cpy))
+	if (skip_redirection_operator(&ptr_cpy))
+		skip_white_spaces(&ptr_cpy);
+	while (*ptr_cpy && !is_white_space(*ptr_cpy)
+		&& !is_redirection_operator(ptr_cpy))
 	{
 		if (*ptr_cpy == '\'')
-			ptr_cpy = skip_quote_content(ptr_cpy, '\'', &token_length);
+			ptr_cpy = skip_quote_content(ptr_cpy, '\'');
 		else if (*ptr_cpy == '"')
-			ptr_cpy = skip_quote_content(ptr_cpy, '"', &token_length);
+			ptr_cpy = skip_quote_content(ptr_cpy, '"');
 		else
-		{
-			token_length += 1;
 			ptr_cpy += 1;
-		}
 	}
 	if (!*input)
 		return (NULL);
-	input = fill_argv(input, line, token_length);
+	input = fill_argv(input, line, ptr_cpy - input);
 	if (!input)
 		return (NULL);
 	return (ptr_cpy);
@@ -57,11 +55,9 @@ static bool	make_tokens(const char *input, t_line *line)
 		skip_white_spaces(&input);
 		if (!*input)
 			return (true);
-		input = tokenise_arg(input, line);
+		input = tokenise_argv(input, line);
 		if (!input)
 			return (false);
-		// else if (is_redir_format(*input))
-		// 	tokenise_redir_and_fd(&input, &line);
 	}
 	return (true);
 }
