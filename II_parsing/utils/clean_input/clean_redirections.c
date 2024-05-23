@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:21:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/21 22:11:05 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:18:08 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	bad_redirection(const char *str)
 	return (99);
 }
 
-bool	good_redirections(char *str)
+bool	good_redirections(const char *str)
 {
 	char	return_value;
 

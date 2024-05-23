@@ -6,28 +6,36 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/22 01:22:02 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 02:29:56 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
-#include <unistd.h>
+
+// TODO install todo tree / fix it
 
 bool	big_parse(t_line *line, char **input)
 {
 	char	*str;
 
+	if (!*input || !input)
+		return (false);
+	skip_white_spaces((const char **)input);
+	if (!**input)
+		return (false);
 	str = *input;
-	line->argc = 0;
-	if (clean_input(&str))
+	if (clean_input((const char **)&str))
 		write(1, "CLEAN_INPUT\n", 13);
 	else
 		return (write(1, "BAD_INPUT\n", 11), false);
-	if (lex(str, line))
-		printf("GOOD_LEX\nargc = %i\n", line->argc);
+	if (lex((const char *)str, line))
+		printf("GOOD_LEX\n");
 	else
-		return (write(1, "BAD_LEX\n", 9), false);
-		// expand(input);
+		return (printf("BAD_LEX\n"), false);
+		// if (expand(line))
+	// 	printf("CASH_MONEY\nargc = %i\n", line->argc);
+	// else
+	// 	return (printf("BROKE_ASS\n"), false);
 		// parse(input);
 		// check_path(intput);
 	return (true);

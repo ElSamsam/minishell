@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/21 22:38:42 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:51:52 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 bool	is_arg_format(char c)
 {
-	if (ft_isalnum(c) || c == '_' || is_valid_fd_name(c)
-		|| c == '\'' || c == '"')
+	if (ft_isalnum(c) || c == '_' || c == '\'' || c == '"')
 		return (true);
 	return (false);
 }
@@ -34,7 +33,7 @@ bool	is_quote(char c, char quote)
 	return (false);
 }
 
-char	*skip_quote_content(char *str, char quote, size_t *length)
+const char	*skip_quote_content(const char *str, char quote, size_t *length)
 {
 	str += 1;
 	*length += 1;

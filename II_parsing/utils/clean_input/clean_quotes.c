@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:07:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/21 22:10:58 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:19:39 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // 	;
 // }
 
-char	*find_matching_quote(char *str, char quote)
+const char	*find_matching_quote(const char *str, char quote)
 {
 	while (*str)
 	{
@@ -28,7 +28,7 @@ char	*find_matching_quote(char *str, char quote)
 	return (NULL);
 }
 
-bool	even_quotes(char *str)
+bool	even_quotes(const char *str)
 {
 	while (*str)
 	{
@@ -49,7 +49,7 @@ bool	even_quotes(char *str)
 	return (true);
 }
 
-bool	quotes(char *str)
+bool	quotes(const char *str)
 {
 	if (!even_quotes(str))
 		return (printf("minishell: parsing error: missing quote\n"), false);

@@ -6,11 +6,11 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 18:15:23 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/21 22:12:01 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:18:28 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../I_header/minishell.h"
+#include "../../../I_header/minishell.h"
 
 bool	is_white_space(char c)
 {
