@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/29 18:53:08 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:59:18 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,8 @@ static bool	clean_surrounding_quotes(t_line *line)
 
 bool	parse(t_line *line)
 {
-	// printf("%s\n", line->argv->prev->av);
-	// pause();
-	// while (line->argv->prev)
-	// 	line->argv = line->argv->prev;
-	// 
-	// rewind_to_line_argv_head(line);
 	if (!clean_surrounding_quotes(line))
 		return (printf("clean_quotes_failed\n"), false);
-	// printf("clean argv :\t%s\n\n", line->argv->av);
-	// while (line->argv->next)
-	// {
-	// 	printf("clean argv :\t%s\n", line->argv->av);
-	// 	line->argv = line->argv->next;
-	// }
 	// tag_slots(line);
 	return (true);
 }
