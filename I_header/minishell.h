@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/29 16:34:46 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:31:07 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,23 @@ enum e_TOKENS
 
 enum e_REDIR_OPERATOR
 {
-	IN_OPERATOR,
-	OUT_OPERATOR,
-	APPEND_OPERATOR,
-	HEREDOC_OPERATOR,
+	ZERO,
+	IN_REDIR,
+	OUT_REDIR,
+	APPEND,
+	HEREDOC,
 };
+
+typedef struct t_type
+{
+	char			redir_type;
+	char			*file_name;
+}	t_type;
 
 typedef struct s_redir
 {
-	int					redir_type;
-	char				*file_name;
+	t_type			*in;
+	t_type			*out;
 }	t_redir;
 
 typedef struct s_cmd
@@ -49,6 +56,14 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }	t_cmd;
+
+typedef struct s_pipe
+{
+	t_cmd			*cmd;
+	t_redir			*redir;
+	struct s_pipe	*next;
+	struct s_pipe	*prev;
+}	t_pipe;
 
 typedef struct s_argv
 {
@@ -60,13 +75,11 @@ typedef struct s_argv
 
 typedef struct s_line
 {
-	t_argv	*argv;
-	t_argv	*lst_head;
-	int		argc;
-	char	token_index;
-	t_cmd	*cmd;
-	char	**env;
-	t_redir	*in_out;
+	t_argv			*argv;
+	int				argc;
+	t_argv			*lst_head;
+	t_pipe			*pipe;
+	char			**env;
 }	t_line;
 
 // =================================== PARSING ================================
@@ -84,7 +97,7 @@ void		skip_white_spaces(const char **input);
 
 // QUOTES
 bool		quotes(const char *str);
-const char		*find_matching_quote(const char *str, char quote);
+const char	*find_matching_quote(const char *str, char quote);
 bool		even_quotes(const char *str);
 // QUOTES
 
@@ -103,7 +116,7 @@ t_line		*make_t_line_argv_node(const char *input, size_t len, t_line *line);
 
 // REDIRECTIONS
 bool		good_redirections(const char *str);
-const char		*bad_redirection(const char *str);
+const char	*bad_redirection(const char *str);
 bool		is_valid_fd_name(char c);
 char		is_redirection_operator(const char *str);
 char		skip_redirection_operator(const char **str);

@@ -6,37 +6,35 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:21:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/24 17:43:35 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/05/30 04:27:59 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../I_header/minishell.h"
-#include <stdbool.h>
-#include <stdio.h>
 
 char	skip_redirection_operator(const char **str)
 {
 	if ((*str)[0] == '<' && (*str)[1] == '<')
-		return (*(str) += 2, 4);
+		return (*(str) += 2, HEREDOC);
 	else if ((*str)[0] == '>' && (*str)[1] == '>')
-		return (*(str) += 2, 3);
-	else if (**str == '<')
-		return (*(str) += 1, 2);
+		return (*(str) += 2, APPEND);
 	else if (**str == '>')
-		return (*(str) += 1, 1);
+		return (*(str) += 1, OUT_REDIR);
+	else if (**str == '<')
+		return (*(str) += 1, IN_REDIR);
 	return (false);
 }
 
 char	is_redirection_operator(const char *str)
 {
 	if (str[0] == '<' && str[1] == '<')
-		return (4);
+		return (HEREDOC);
 	else if (str[0] == '>' && str[1] == '>')
-		return (3);
+		return (APPEND);
 	else if (*str == '>')
-		return (2);
+		return (OUT_REDIR);
 	else if (*str == '<')
-		return (1);
+		return (IN_REDIR);
 	return (0);
 }
 
@@ -70,7 +68,9 @@ static const char	*whos_bad(const char *str)
 	return (str);
 }
 
-// THIS IS GONNA HANDLE ACCESS() TO FD IN THE FUTURE
+// THIS IS GONNA HANDLE ACCESS() TO FD IN THE FUTURE 
+// 
+// how again?
 const char	*bad_redirection(const char *str)
 {
 	while (*str)
@@ -85,7 +85,7 @@ const char	*bad_redirection(const char *str)
 			if (!*str)
 				return (str);
 			if (is_redirection_operator(str))
-				return (str);
+				return (++str);
 		}
 		if (!*str)
 			return (NULL);
@@ -94,6 +94,7 @@ const char	*bad_redirection(const char *str)
 	return (str);
 }
 
+// TODO fix redir into newline condition line 119-120
 bool	good_redirections(const char *str)
 {
 	const char	*return_value;
@@ -101,19 +102,20 @@ bool	good_redirections(const char *str)
 	return_value = bad_redirection(str);
 	if (!return_value)
 		return (false);
-	if (is_redirection_operator(--return_value) == 1)
+	if (is_redirection_operator(--return_value) == IN_REDIR)
 		return (printf("syntax error near unexpected token `<'\n"), false);
-	else if (is_redirection_operator(return_value) == 2)
+	else if (is_redirection_operator(return_value) == OUT_REDIR)
 		return (printf("syntax error near unexpected token `>'\n"), false);
-	else if (is_redirection_operator(return_value) == 3)
-		return (printf("syntax error near unexpected token `>'>\n"), false);
-	else if (is_redirection_operator(return_value) == 4)
-		return (printf("syntax error near unexpected token `<'<\n"), false);
+	else if (is_redirection_operator(return_value) == APPEND)
+		return (printf("syntax error near unexpected token `>>'\n"), false);
+	else if (is_redirection_operator(return_value) == HEREDOC)
+		return (printf("syntax error near unexpected token `<<'\n"), false);
 	// else if (*str && !is_valid_fd_name(*(return_value - 1)))
 	// 	return (printf("redir into %c\n", *(return_value - 1)), false);
 	else if (is_valid_fd_name(*(return_value)))
 		return (true);
-	else if (!*return_value)
-		return (printf("redir into newline\n"), false);
+	if (!*return_value)
+		return (printf("syntax error near unexpected token `newline'\n") \
+			, false);
 	return (true);
 }
