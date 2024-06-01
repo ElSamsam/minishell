@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/31 17:06:16 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/01 02:08:03 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_line	*make_t_line_argv_node(const char *input, size_t len, t_line *line)
 		line->argv = malloc(sizeof(t_argv));
 		if (!line->argv)
 			return (NULL);
-		line->lst_head = line->argv;
+		line->argv_head = line->argv;
 		line->argv->prev = NULL;
 		line->argv->next = NULL;
 		line->argv->node_index = line->argc;
-		line->argv->av = ft_substr((const char *)input, 0, len);
-		if (!line->argv->av)
+		line->argv->node = ft_substr((const char *)input, 0, len);
+		if (!line->argv->node)
 			return (NULL);
 	}
 	else
@@ -40,8 +40,8 @@ t_line	*make_t_line_argv_node(const char *input, size_t len, t_line *line)
 		line->argv = next_node;
 		line->argv->next = NULL;
 		line->argv->node_index = line->argc;
-		line->argv->av = ft_substr((const char *)input, 0, len);
-		if (!line->argv->av)
+		line->argv->node = ft_substr((const char *)input, 0, len);
+		if (!line->argv->node)
 			return (NULL);
 	}
 	return (line);
@@ -52,7 +52,7 @@ static char	*fill_argv(const char *input, t_line *line, size_t token_len)
 	line = make_t_line_argv_node(input, token_len, line);
 	if (!line || !line->argv)
 		return (NULL);
-	printf("\tAV%i: %s\n", line->argv->node_index, line->argv->av);
+	printf("\tAV%i: %s\n", line->argv->node_index, line->argv->node);
 	return ((char *)input);
 }
 

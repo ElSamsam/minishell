@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:21:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/30 04:27:59 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/01 00:16:23 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ const char	*bad_redirection(const char *str)
 	return (str);
 }
 
-// TODO fix redir into newline condition line 119-120
+// FIXME fix redir into newline condition line 119-120
 bool	good_redirections(const char *str)
 {
 	const char	*return_value;

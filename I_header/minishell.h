@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/31 16:31:07 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/01 02:08:03 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,12 @@ enum e_REDIR_OPERATOR
 	HEREDOC,
 };
 
-typedef struct t_type
-{
-	char			redir_type;
-	char			*file_name;
-}	t_type;
-
 typedef struct s_redir
 {
-	t_type			*in;
-	t_type			*out;
+	char			type;
+	char			*filename;
+	struct s_redir	*next;
+	// struct s_redir	*prev;
 }	t_redir;
 
 typedef struct s_cmd
@@ -68,16 +64,16 @@ typedef struct s_pipe
 typedef struct s_argv
 {
 	int				node_index;
-	char			*av;
+	char			*node;
 	struct s_argv	*next;
 	struct s_argv	*prev;
 }	t_argv;
 
 typedef struct s_line
 {
-	t_argv			*argv;
 	int				argc;
-	t_argv			*lst_head;
+	t_argv			*argv;
+	t_argv			*argv_head;
 	t_pipe			*pipe;
 	char			**env;
 }	t_line;
@@ -109,6 +105,12 @@ const char	*skip_quote_content(const char *str, char quote);
 // EXPANSION
 bool		expand(t_line *line);
 // EXPANSION
+
+
+// PARSING_UTILS
+bool		clean_surrounding_quotes(t_line *line);
+bool		process_redir(t_line *line, char redir_operator);
+// PARSING_UTILS
 
 // STRUCT
 t_line		*make_t_line_argv_node(const char *input, size_t len, t_line *line);
