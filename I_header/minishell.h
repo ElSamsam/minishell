@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/01 23:08:39 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/02 04:42:13 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,9 @@ typedef struct s_redir
 	// struct s_redir	*prev;
 }	t_redir;
 
-typedef struct s_cmd
-{
-	char			**arg;
-	struct s_cmd	*next;
-	struct s_cmd	*prev;
-}	t_cmd;
-
 typedef struct s_pipe
 {
-	t_cmd			*cmd;
+	char			**arg;
 	t_redir			*redir;
 	struct s_pipe	*next;
 	struct s_pipe	*prev;

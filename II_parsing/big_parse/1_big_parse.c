@@ -6,28 +6,28 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/02 01:17:51 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/02 03:20:14 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
 
-static void	print_lst(t_line *line)
-{
-	if (line && line->argv && line->pipe && line->pipe->cmd \
-	&& line->pipe->cmd->arg && *line->pipe->cmd->arg \
-	&& line->pipe->redir && line->pipe->redir->type \
-	&& line->pipe->redir->filename \
-	&& line->pipe->redir->type \
-	&& line->pipe->redir->type)
-	{
-		line->argv = line->argv_head;
-		while (line->argv)
-		{
-			printf("%s\n", line->argv->node);
-		}
-	}
-}
+// static void	print_lst(t_line *line)
+// {
+// 	if (line && line->argv && line->pipe && line->pipe->cmd \
+// 	&& line->pipe->cmd->arg && *line->pipe->cmd->arg \
+// 	&& line->pipe->redir && line->pipe->redir->type \
+// 	&& line->pipe->redir->filename \
+// 	&& line->pipe->redir->type \
+// 	&& line->pipe->redir->type)
+// 	{
+// 		line->argv = line->argv_head;
+// 		while (line->argv)
+// 		{
+// 			printf("%s\n", line->argv->node);
+// 		}
+// 	}
+// }
 
 // TODO turn all malloc into calloc
 bool	big_parse(t_line *line, char **input)
@@ -51,12 +51,10 @@ bool	big_parse(t_line *line, char **input)
 		printf(/*print_lst(line), */"GOOD_PARSE\n\n");
 	else
 		return (printf("BAD_PARSE\n\n"), false);
+	// if (expand(line))
+	// 	printf("CHA CHING\nargc = %i\n", line->argc);
 	// else
-		// return (printf("BAD_LEX\n"), false);
-		// if (expand(line))
-		// printf("CASH_MONEY\nargc = %i\n", line->argc);
-	// else
-	// 	return (printf("BROKE_ASS\n"), false);
-		// check_path(intput);
+	// 	return (printf(">:(\n"), false);
+	// check_path(intput);
 	return (true);
 }
