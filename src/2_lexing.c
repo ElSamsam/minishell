@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../I_header/minishell.h"
+#include "minishell.h"
 
 // TODO turn this function into two
 t_line	*make_t_line_argv_node(const char *input, size_t len, t_line *line)

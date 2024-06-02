@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_utils.c                                      :+:      :+:    :+:   */
+/*   clean_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 16:29:23 by saperrie         ###   ########.fr       */
+/*   Created: 2024/05/21 22:10:46 by saperrie          #+#    #+#             */
+/*   Updated: 2024/06/01 23:32:17 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../I_header/minishell.h"
+#include "minishell.h"
 
-bool	is_quote(char c, char quote)
+bool	clean_input(const char **str)
 {
-	if (c == quote)
-		return (true);
-	return (false);
-}
-
-const char	*skip_quote_content(const char *str, char quote)
-{
-	if (*str == '\'' || *str == '"')
-		str += 1;
-	while (*str && !is_quote(*str, quote))
-		str++;
-	if (*str == '\'' || *str == '"')
-		return (str + 1);
-	return (str);
+	skip_white_spaces((const char **)str);
+	if (!*str)
+		return (false);
+	if (!quotes(*str))
+		return (false);
+	// if (!good_redirections(*str))
+	// 	return (false);
+	return (true);
 }

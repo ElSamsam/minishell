@@ -6,19 +6,21 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 06:39:58 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/23 01:04:12 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 01:05:27 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./I_header/minishell.h"
+#include "minishell.h"
 
 // (argc + argv + 1 = envp);in memory, thanks geymat for the tip
-
+// TODO get_env(user); >>>> readline(user);
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	*str;
 	t_line	line;
 
+	(void)argc;
+	(void)argv;
 	if (*envp)
 		line.env = envp;
 	while (13)

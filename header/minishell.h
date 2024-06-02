@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/02 04:42:13 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 01:09:56 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include "../III_libft_improved/src/libft.h"
+# include "libft.h"
 
 enum e_TOKENS
 {
@@ -94,6 +94,7 @@ bool		even_quotes(const char *str);
 // TOKENS_UTILS
 bool		is_quote(char c, char quote);
 const char	*skip_quote_content(const char *str, char quote);
+bool		clean_surrounding_quotes(t_line *line);
 // TOKENS_UTILS
 
 // EXPANSION
@@ -102,7 +103,6 @@ bool		expand(t_line *line);
 
 
 // PARSING_UTILS
-bool		clean_surrounding_quotes(t_line *line);
 bool		process_redir(t_line *line, char redir_operator);
 // PARSING_UTILS
 

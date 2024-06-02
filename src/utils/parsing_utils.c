@@ -6,15 +6,15 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:21:34 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/02 04:49:25 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 00:54:09 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../I_header/minishell.h"
+#include "minishell.h"
 
 bool	process_redir(t_line *line, char redir_operator)
 {
-	char	offset;
+	short	offset;
 	size_t	i;
 
 	offset = redirection_offset(redir_operator);

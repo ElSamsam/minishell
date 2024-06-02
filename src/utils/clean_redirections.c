@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../I_header/minishell.h"
+#include "minishell.h"
 
 char	redirection_offset(char redir_operator)
 {

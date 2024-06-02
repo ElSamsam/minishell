@@ -6,11 +6,12 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:49:30 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/01 02:08:55 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 00:53:39 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../I_header/minishell.h"
+#if 0
+#include "minishell.h"
 
 // ================================ EXPAND_UTILS ==============================
 // handle_quote_dollar_sign(line);
@@ -44,7 +45,6 @@ static bool	is_env_var_name_format(char c)
 // 	if (!token_two || !*token_two)
 // 		return ;
 // }
-
 static void	true_expand(t_line *line)
 {
 	// char	*var;
@@ -87,3 +87,5 @@ bool	expand(t_line *line)
 	}
 	return (true);
 }
+
+#endif

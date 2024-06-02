@@ -6,7 +6,7 @@
 #    By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 20:39:49 by saperrie          #+#    #+#              #
-#    Updated: 2024/04/03 16:40:34 by saperrie         ###   ########.fr        #
+#    Updated: 2024/06/03 00:56:56 by saperrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ all					:	$(NAME)
 
 
 $(NAME)				:	$(OBJS)
-	ar rc $(NAME) $(OBJS)
+	ar -rc $(NAME) $(OBJS)
 
 
 $(OBJ_DIR)			:

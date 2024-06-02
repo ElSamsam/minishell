@@ -6,11 +6,11 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/02 05:02:05 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:20:36 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../I_header/minishell.h"
+#include "minishell.h"
 #include <stdbool.h>
 
 //  FIXME this workin but 5 functions
@@ -133,9 +133,9 @@ static bool	tag_tokens(t_line *line)
 //  FIXME fix clean_surrounding_quotes()
 bool	parse(t_line *line)
 {
-	// line->argv = line->argv_head;
-	// if (!clean_surrounding_quotes(line))
-	// 	return (printf("clean_quotes_failed\n"), false);
+	line->argv = line->argv_head;
+	if (!clean_surrounding_quotes(line))
+		return (printf("clean_quotes_failed\n"), false);
 	line->pipe = malloc(sizeof(t_pipe));
 	if (!line->pipe)
 		return (false);

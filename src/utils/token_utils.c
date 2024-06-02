@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   white_spaces.c                                     :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 18:15:23 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/01 22:58:41 by saperrie         ###   ########.fr       */
+/*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
+/*   Updated: 2024/05/23 16:29:23 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../I_header/minishell.h"
+#include "minishell.h"
 
-bool	is_white_space(char c)
+bool	is_quote(char c, char quote)
 {
-	// if (c == '\0')
-	// 	return (false);
-	if (c == ' ' || c == '\t')
+	if (c == quote)
 		return (true);
 	return (false);
 }
 
-size_t	skip_white_spaces(const char **input)
+const char	*skip_quote_content(const char *str, char quote)
 {
-	size_t	wspace_len;
-
-	wspace_len = 0;
-	if (!*input || !**input || !input)
-		return (0);
-	while (is_white_space(**input))
-	{
-		wspace_len += 1;
-		(*input)++;
-	}
-	return (wspace_len);
+	if (*str == '\'' || *str == '"')
+		str += 1;
+	while (*str && !is_quote(*str, quote))
+		str++;
+	if (*str == '\'' || *str == '"')
+		return (str + 1);
+	return (str);
 }
