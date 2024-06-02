@@ -6,11 +6,20 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:21:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/01 00:16:23 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/01 23:23:55 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../I_header/minishell.h"
+
+char	redirection_offset(char redir_operator)
+{
+	if (redir_operator == HEREDOC || redir_operator == APPEND)
+		return (2);
+	else if (redir_operator == IN_REDIR || redir_operator == OUT_REDIR)
+		return (1);
+	return (0);
+}
 
 char	skip_redirection_operator(const char **str)
 {
@@ -48,11 +57,22 @@ bool	is_valid_fd_name(char c)
 
 static const char	*whos_bad(const char *str)
 {
+	char	redir_operator;
+	size_t	wspace_len;
+
 	skip_white_spaces(&str);
 	if (!*str || !str)
 		return (NULL);
-	if (is_redirection_operator(str))
-		return (str);
+	redir_operator = is_redirection_operator(str);
+	if (redir_operator)
+	{
+		skip_redirection_operator(&str);
+		wspace_len = skip_white_spaces(&str);
+		if (is_valid_fd_name(*str))
+			;
+		else
+			return (str - wspace_len - redirection_offset(redir_operator));
+	}
 	while (is_valid_fd_name(*str))
 	{
 		if (*str == '\'' || *str == '"')
@@ -95,6 +115,7 @@ const char	*bad_redirection(const char *str)
 }
 
 // FIXME fix redir into newline condition line 119-120
+// FIXME redir + file + (no whitespace)redir + file, as in : >foo>bar is broken
 bool	good_redirections(const char *str)
 {
 	const char	*return_value;
@@ -110,8 +131,6 @@ bool	good_redirections(const char *str)
 		return (printf("syntax error near unexpected token `>>'\n"), false);
 	else if (is_redirection_operator(return_value) == HEREDOC)
 		return (printf("syntax error near unexpected token `<<'\n"), false);
-	// else if (*str && !is_valid_fd_name(*(return_value - 1)))
-	// 	return (printf("redir into %c\n", *(return_value - 1)), false);
 	else if (is_valid_fd_name(*(return_value)))
 		return (true);
 	if (!*return_value)

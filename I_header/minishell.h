@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/01 02:08:03 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/01 23:08:39 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ enum e_REDIR_OPERATOR
 
 typedef struct s_redir
 {
+	// int				redir_index;
 	char			type;
 	char			*filename;
 	struct s_redir	*next;
@@ -88,7 +89,7 @@ bool		parse(t_line *line);
 
 // W_SPACE
 bool		is_white_space(char c);
-void		skip_white_spaces(const char **input);
+size_t		skip_white_spaces(const char **input);
 // W_SPACE
 
 // QUOTES
@@ -122,6 +123,7 @@ const char	*bad_redirection(const char *str);
 bool		is_valid_fd_name(char c);
 char		is_redirection_operator(const char *str);
 char		skip_redirection_operator(const char **str);
+char		redirection_offset(char redir_operator);
 // REDIRECTIONS
 
 // =================================== PARSING ================================

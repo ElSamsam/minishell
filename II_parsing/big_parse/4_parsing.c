@@ -6,14 +6,14 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/01 03:03:08 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/02 01:50:01 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../I_header/minishell.h"
 #include <stdbool.h>
 
-//  FIXME this suppposed to be workin and 5 functions
+//  FIXME this workin and 5 functions
 static char	extract_node(t_line *line)
 {
 	t_argv	*tmp;
@@ -21,36 +21,32 @@ static char	extract_node(t_line *line)
 	tmp = line->argv;
 	if (!line->argv->prev && !line->argv->next)
 	{
-		printf("\nonly node in lst->argv is a redir\n");
 		free(tmp->node);
 		free(tmp);
-		if (line->argc == 1)
-			return (0);
+		return (2);
 	}
 	else if (!line->argv->prev && line->argv->next)
 	{
+		// printf("first node is redir and argv_head = second node\n");
 		line->argv = line->argv->next;
 		line->argv_head = line->argv;
 		line->argv->prev = NULL;
-		printf("\nfirst node is redir and argv_head = second node\n");
 		free(tmp->node);
 		free(tmp);
 	}
 	else if (line->argv->prev && !line->argv->next)
 	{
-		// line->argv = line->argv->prev;
-		printf("\nlast node is redir and last node becomes null\n");
+		// printf("last node is redir and last node becomes null\n");
 		line->argv->prev->next = NULL;
 		free(tmp->node);
 		free(tmp);
-		return (2);
+		return (3);
 	}
 	else if (line->argv->prev && line->argv->next)
 	{
-		printf("\nnode is redir and argv_head = node->next\n");
+		// printf("node is redir and argv = argv->next\n");
 		line->argv->prev->next = line->argv->next;
 		line->argv->next->prev = line->argv->prev;
-		printf("redir_node %i : %s\n", line->argv->node_index, line->argv->node);
 		line->argv = line->argv->next;
 		free(tmp->node);
 		free(tmp);
@@ -62,8 +58,6 @@ static bool	tag_redirections(t_line *line)
 {
 	char	operator;
 
-	if (!line->argv->node || !line->argv || !line->argv)
-		return (false);
 	operator = is_redirection_operator((line->argv->node));
 	if (operator == IN_REDIR && process_redir(line, IN_REDIR))
 		;
@@ -87,7 +81,9 @@ static bool	tag_tokens(t_line *line)
 		if (tag_redirections(line))
 		{
 			return_value = extract_node(line);
-			if (return_value == 2)
+			if (return_value == 3)
+				break ;
+			else if (return_value == 2)
 				return (true);
 			else if (return_value == 1)
 				continue ;
@@ -95,7 +91,13 @@ static bool	tag_tokens(t_line *line)
 				return (false);
 		}
 		else
-			line->argv = line->argv->next; // FIX THIS LINE->NEXT THINGY
+			line->argv = line->argv->next;
+	}
+	line->argv = line->argv_head;
+	while (line->argv)
+	{
+		printf("\t%s is still here\n", line->argv->node);
+		line->argv = line->argv->next;
 	}
 	// tag_cmd_and_arg();
 	// free_t_line_argv();

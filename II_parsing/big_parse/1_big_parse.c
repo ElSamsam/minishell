@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/01 02:08:03 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/02 01:17:51 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	print_lst(t_line *line)
 	}
 }
 
+// TODO turn all malloc into calloc
 bool	big_parse(t_line *line, char **input)
 {
 	char	*str;
