@@ -6,11 +6,26 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/03 02:30:38 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 06:53:50 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// if heredoc limiter contains quote : cat << "H"D
+// 										<< $USER
+// 										<< HD
+// 				don't expand, result is : $USER 
+
+static bool	clean_input(const char **str)
+{
+	skip_white_spaces((const char **)str);
+	if (!*str)
+		return (false);
+	if (!quotes(*str))
+		return (false);
+	return (true);
+}
 
 // TODO turn all malloc into calloc
 bool	big_parse(t_line *line, char **input)

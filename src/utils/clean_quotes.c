@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:07:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/03 02:06:09 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 06:40:33 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ static void	memcpy_skips_quotes(char *str, int *dst, int *src)
 		return ;
 	(*src) += 1;
 }
-
-
-
 
 bool	clean_surrounding_quotes(t_line *line)
 {

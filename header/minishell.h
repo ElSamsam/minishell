@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/03 01:09:56 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 06:39:56 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_redir
 	// int				redir_index;
 	char			type;
 	char			*filename;
-	struct s_redir	*next;
+	// struct s_redir	*next;
 	// struct s_redir	*prev;
 }	t_redir;
 
@@ -76,7 +76,6 @@ typedef struct s_line
 
 int			main(int argc, char *argv[], char *exp[]);
 bool		big_parse(t_line *line, char **input);
-bool		clean_input(const char **input);
 bool		lex(const char *input, t_line *line);
 bool		parse(t_line *line);
 
@@ -101,19 +100,12 @@ bool		clean_surrounding_quotes(t_line *line);
 bool		expand(t_line *line);
 // EXPANSION
 
-
-// PARSING_UTILS
-bool		process_redir(t_line *line, char redir_operator);
-// PARSING_UTILS
-
 // STRUCT
 t_line		*make_t_line_argv_node(const char *input, size_t len, t_line *line);
 // STRUCT
 
 // REDIRECTIONS
-bool		good_redirections(const char *str);
-const char	*bad_redirection(const char *str);
-bool		is_valid_fd_name(char c);
+bool		process_redir(t_line *line, char redir_operator);
 char		is_redirection_operator(const char *str);
 char		skip_redirection_operator(const char **str);
 char		redirection_offset(char redir_operator);
