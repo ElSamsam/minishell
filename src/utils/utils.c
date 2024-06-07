@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/03 06:25:02 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:27:39 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_white_space(char c)
 	return (false);
 }
 
-size_t	skip_white_spaces(const char **input)
+size_t	skip_white_spaces(char **input)
 {
 	size_t	wspace_len;
 
@@ -41,7 +41,7 @@ bool	is_quote(char c, char quote)
 	return (false);
 }
 
-const char	*skip_quote_content(const char *str, char quote)
+char	*skip_quote_content(char *str, char quote)
 {
 	if (*str == '\'' || *str == '"')
 		str += 1;

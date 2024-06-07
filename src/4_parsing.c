@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/03 06:48:53 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:05:14 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ static bool	tag_cmd_and_arg(t_line *line)
 		return (false);
 	while (line->argv && line->pipe->arg)
 	{
+		// if (**line->pipe->arg == '|')
+			// handle_pipe_somehow();
 		*line->pipe->arg = ft_strdup(line->argv->node);
 		if (!*line->pipe->arg)
 			return (false);
@@ -140,6 +142,7 @@ static bool	handle_redir(t_line *line)
 //  FIXME fix clean_surrounding_quotes()
 bool	parse(t_line *line)
 {
+	
 	line->argv = line->argv_head;
 	if (!clean_surrounding_quotes(line))
 		return (printf("clean_quotes_failed\n"), false);

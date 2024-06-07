@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:21:34 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/03 06:36:39 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:44:35 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	redirection_offset(char redir_operator)
 	return (0);
 }
 
-char	skip_redirection_operator(const char **str)
+char	skip_redirection_operator(char **str)
 {
 	if ((*str)[0] == '<' && (*str)[1] == '<')
 		return (*(str) += 2, HEREDOC);
@@ -34,7 +34,7 @@ char	skip_redirection_operator(const char **str)
 	return (false);
 }
 
-char	is_redirection_operator(const char *str)
+char	is_redirection_operator(char *str)
 {
 	if (str[0] == '<' && str[1] == '<')
 		return (HEREDOC);
