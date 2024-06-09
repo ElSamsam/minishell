@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:21:34 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/07 17:44:35 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 22:41:19 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,16 @@ char	is_redirection_operator(char *str)
 	return (0);
 }
 
-bool	process_redir(t_line *line, char redir_operator)
+size_t	count_argv_nodes(t_line *line)
 {
-	short			offset;
-	size_t			i;
+	size_t	node_count;
 
-	offset = redirection_offset(redir_operator);
-	line->pipe->redir = malloc(sizeof(t_redir));
-	if (!line->pipe->redir)
-		return (false);
-	while (is_white_space(line->argv->node[offset]))
-		offset += 1;
-	line->pipe->redir->type = redir_operator;
-	line->pipe->redir->filename = malloc(sizeof(char) * \
-		ft_strlen(line->argv->node) - offset + 1);
-	if (!line->pipe->redir->filename)
-		return (false);
-	i = 0;
-	while (line->argv->node[offset])
-		line->pipe->redir->filename[i++] = line->argv->node[offset++];
-	line->pipe->redir->filename[i] = '\0';
-	if (!*line->pipe->redir->filename && !line->argv->next)
-		return (printf("redir into newline\n"), false);
-	printf("\tfilename: %s\n", line->pipe->redir->filename);
-	return (true);
+	node_count = 0;
+	while (line->argv)
+	{
+		node_count += 1;
+		line->argv = line->argv->next;
+	}
+	line->argv = line->argv_head;
+	return (node_count);
 }

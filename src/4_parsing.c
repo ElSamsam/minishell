@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/07 18:05:14 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/09 20:13:05 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,32 @@ static char	extract_node(t_line *line)
 	return (1);
 }
 
+bool	process_redir(t_line *line, char redir_operator)
+{
+	short			offset;
+	size_t			i;
+
+	offset = redirection_offset(redir_operator);
+	line->pipe->redir = malloc(sizeof(t_redir));
+	if (!line->pipe->redir)
+		return (false);
+	while (is_white_space(line->argv->node[offset]))
+		offset += 1;
+	line->pipe->redir->type = redir_operator;
+	line->pipe->redir->filename = malloc(sizeof(char) * \
+		ft_strlen(line->argv->node) - offset + 1);
+	if (!line->pipe->redir->filename)
+		return (false);
+	i = 0;
+	while (line->argv->node[offset])
+		line->pipe->redir->filename[i++] = line->argv->node[offset++];
+	line->pipe->redir->filename[i] = '\0';
+	if (!*line->pipe->redir->filename && !line->argv->next)
+		return (printf("redir into newline\n"), false);
+	printf("\tfilename: %s\n", line->pipe->redir->filename);
+	return (true);
+}
+
 static char	tag_redirection(t_line *line)
 {
 	char	operator;
@@ -73,19 +99,12 @@ static char	tag_redirection(t_line *line)
 	return (1);
 }
 
-static size_t	count_argv_nodes(t_line *line)
-{
-	size_t	node_count;
-
-	node_count = 0;
-	while (line->argv)
-	{
-		node_count += 1;
-		line->argv = line->argv->next;
-	}
-	line->argv = line->argv_head;
-	return (node_count);
-}
+// static bool	handle_pipe_somehow(t_line *line)
+// {
+// 	// free(line->argv->node);
+// 	line->argv->node = NULL;
+// 	line->pipe = line->pipe->next;
+// }
 
 static bool	tag_cmd_and_arg(t_line *line)
 {
@@ -99,8 +118,8 @@ static bool	tag_cmd_and_arg(t_line *line)
 		return (false);
 	while (line->argv && line->pipe->arg)
 	{
-		// if (**line->pipe->arg == '|')
-			// handle_pipe_somehow();
+		// if (*line->argv->node == '|' * -1)
+		// 	handle_pipe_somehow(line);
 		*line->pipe->arg = ft_strdup(line->argv->node);
 		if (!*line->pipe->arg)
 			return (false);
@@ -139,22 +158,27 @@ static bool	handle_redir(t_line *line)
 	return (true);
 }
 
-//  FIXME fix clean_surrounding_quotes()
-bool	parse(t_line *line)
+static	bool	tag_tokens(t_line *line)
 {
-	
-	line->argv = line->argv_head;
-	if (!clean_surrounding_quotes(line))
-		return (printf("clean_quotes_failed\n"), false);
 	line->pipe = malloc(sizeof(t_pipe));
 	if (!line->pipe)
 		return (false);
-	line->argv = line->argv_head;
 	if (!handle_redir(line))
 		return (false);
 	line->argv = line->argv_head;
 	if (!tag_cmd_and_arg(line))
 		return (false);
 	// free_t_line_argv();
+}
+
+// FIXME include pipes
+bool	parse(t_line *line)
+{
+	line->argv = line->argv_head;
+	if (!clean_surrounding_quotes(line))
+		return (printf("clean_quotes_failed\n"), false);
+	line->argv = line->argv_head;
+	if (!tag_tokens(line))
+		return (false);
 	return (true);
 }

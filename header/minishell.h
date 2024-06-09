@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/07 18:00:57 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 22:41:26 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ bool		expand(t_line *line);
 
 // STRUCT
 t_line		*make_argv_node(char *input, size_t len, t_line *line);
+size_t		count_argv_nodes(t_line *line);
 // STRUCT
 
 // REDIRECTIONS
