@@ -6,7 +6,7 @@
 #    By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 01:12:35 by saperrie          #+#    #+#              #
-#    Updated: 2024/06/03 06:44:56 by saperrie         ###   ########.fr        #
+#    Updated: 2024/06/10 21:31:52 by saperrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ OBJECTS = $(patsubst src/%.c,$(OBJECT_DIR)%.o,\
 		  src/utils/clean_quotes.c \
 		  src/utils/utils.c \
 		  src/utils/redirection_utils.c \
+		  src/utils/parsing_utils.c \
 		  )
 
 DEPENDENCIES = $(OBJECTS:.o=.d)

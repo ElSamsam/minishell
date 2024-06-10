@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 00:07:21 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/07 17:44:35 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 21:18:28 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ bool	clean_surrounding_quotes(t_line *line)
 		src = 0;
 		while (line->argv->node[dst] && line->argv->node)
 		{
+			if (line->argv->node[src] == '$')
+				line->argv->node[src] *= -1;
 			if (!line->argv->node[src])
 				line->argv->node[dst] = '\0';
 			else if (line->argv->node[src] == '"' \

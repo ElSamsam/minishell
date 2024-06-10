@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/09 20:00:59 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/09 22:30:52 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char	*tokenise(char *ptr, t_line *line)
 {
 	char	*cpy;
 
-	skip_white_spaces(&ptr);
+	// skip_white_spaces(&ptr);
 	cpy = ptr;
 	if (skip_redirection_operator(&cpy))
 		skip_white_spaces(&cpy);

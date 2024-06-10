@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 23:21:34 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/07 22:41:19 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/09 21:45:41 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,4 @@ char	is_redirection_operator(char *str)
 	else if (*str == '<')
 		return (IN_REDIR);
 	return (0);
-}
-
-size_t	count_argv_nodes(t_line *line)
-{
-	size_t	node_count;
-
-	node_count = 0;
-	while (line->argv)
-	{
-		node_count += 1;
-		line->argv = line->argv->next;
-	}
-	line->argv = line->argv_head;
-	return (node_count);
 }

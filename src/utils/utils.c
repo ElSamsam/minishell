@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/09 20:04:15 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/09 21:46:47 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,18 @@ char	*skip_quote_content(char *str, char quote)
 	if (*str == '\'' || *str == '"')
 		return (str + 1);
 	return (str);
+}
+
+size_t	count_argv_nodes(t_line *line)
+{
+	size_t	node_count;
+
+	node_count = 0;
+	while (line->argv && *line->argv->node != '|')
+	{
+		node_count += 1;
+		line->argv = line->argv->next;
+	}
+	line->argv = line->argv_head;
+	return (node_count);
 }

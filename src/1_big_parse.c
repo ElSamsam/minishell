@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/07 18:29:08 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 21:30:19 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@
 // 										<< $USER
 // 										<< HD
 // 				don't expand, result is : $USER 
+
+static	bool	dirty_redir(char *str)
+{
+	while (*str)
+	{
+		if (skip_redirection_operator(&str))
+		{
+			skip_white_spaces(&str);
+			if (*str == '|')
+				return (ft_printf("que dla merde\n"), false);
+		}
+		str += 1;
+	}
+	return (true);
+}
 
 static bool	clean_input(char **str)
 {
@@ -27,6 +42,8 @@ static bool	clean_input(char **str)
 	// 		false);
 	if (!even_quotes(*str))
 		return (printf("minishell: parsing error: missing quote\n"), false);
+	if (!dirty_redir(*str))
+		return (false);
 	return (true);
 }
 
