@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/10 21:10:39 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:31:02 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_line
 	t_argv			*argv;
 	t_argv			*argv_head;
 	t_pipe			*pipe;
-	// t_pipe			*pipe_head;
+	t_pipe			*pipe_head;
 	char			**env;
 }	t_line;
 

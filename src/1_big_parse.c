@@ -6,10 +6,11 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/10 21:30:19 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:08:51 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
 
 // if heredoc limiter contains quote : cat << "H"D
@@ -25,7 +26,8 @@ static	bool	dirty_redir(char *str)
 		{
 			skip_white_spaces(&str);
 			if (*str == '|')
-				return (ft_printf("que dla merde\n"), false);
+				return (ft_putstr_fd \
+			("syntax error near unexpected token `newline'\n", 2), false);
 		}
 		str += 1;
 	}
@@ -37,20 +39,22 @@ static bool	clean_input(char **str)
 	skip_white_spaces((char **)str);
 	if (!*str)
 		return (false);
-	// if (**str == '|')
-		// return (printf("minishell: syntax error near unexpected token `|'\n"), \
-	// 		false);
+	if (**str == '|')
+		return (ft_putstr_fd \
+	("minishell: syntax error near unexpected token `|'\n", 2), \
+			false);
 	if (!even_quotes(*str))
-		return (printf("minishell: parsing error: missing quote\n"), false);
+		return (ft_putstr_fd("minishell: parsing error: missing quote\n", 2) \
+	, false);
 	if (!dirty_redir(*str))
 		return (false);
 	return (true);
 }
 
-// TODO turn all malloc into calloc
 bool	big_parse(t_line *line, char **input)
 {
 	char	*str;
+
 	if (!*input || !input)
 		return (false);
 	skip_white_spaces((char **)input);

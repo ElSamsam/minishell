@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/10 21:14:02 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:00:03 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static	bool	tag_tokens(t_line *line)
 	line->pipe = ft_calloc(1, sizeof(t_pipe));
 	if (!line->pipe)
 		return (false);
+	line->pipe_head = line->pipe;
 	line->pipe->prev = NULL;
 	line->pipe->next = NULL;
 	while (line->argv)
@@ -86,7 +87,6 @@ static	bool	tag_tokens(t_line *line)
 	// free_t_line_argv();
 }
 
-// FIXME include pipes
 bool	parse(t_line *line)
 {
 	line->argv = line->argv_head;
@@ -95,5 +95,6 @@ bool	parse(t_line *line)
 	line->argv = line->argv_head;
 	if (!tag_tokens(line))
 		return (false);
+	line->pipe = line->pipe_head;
 	return (true);
 }

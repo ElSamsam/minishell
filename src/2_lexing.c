@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/09 22:30:52 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:02:46 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,45 +121,3 @@ bool	lex(char *input, t_line *line)
 		return (printf("BAD_TOKEN\n"), false);
 	return (true);
 }
-
-	// char	*ptr_cpy;
-
-	// ptr_cpy = input;
-	// if (skip_redirection_operator(&ptr_cpy))
-	// 	skip_white_spaces(&ptr_cpy);
-	// if (is_redirection_operator(ptr_cpy)/* || *ptr_cpy == '|'*/)
-	// 	return (printf("syntax error near unexpected token `%c'\n", *ptr_cpy), \
-	// 		NULL);
-	// while (*ptr_cpy && !is_white_space(*ptr_cpy) \
-	// 	&& !is_redirection_operator(ptr_cpy) && *ptr_cpy != '|')
-	// {
-	// 	// if (*ptr_cpy == '|')
-	// 	// {
-	// 	// 	ptr_cpy += 1;
-	// 	// 	break ;
-	// 	// }
-	// 	if (*ptr_cpy == '\'')
-	// 		ptr_cpy = skip_quote_content(ptr_cpy, '\'');
-	// 	else if (*ptr_cpy == '"')
-	// 		ptr_cpy = skip_quote_content(ptr_cpy, '"');
-	// 	else
-	// 		ptr_cpy += 1;
-	// }
-	// if (!*input)
-	// 	return (NULL);
-	// input = fill_argv(input, line, ptr_cpy - input);
-	// if (*ptr_cpy == '|') // TODO INCLUDE PIPE->NEXT WHEN NEEDED
-	// {
-	// 	// printf("%i", line->argv->node_index);
-	// 	// if (is_redirection_operator(line->argv->node))
-	// 	// 	return (printf("parsing error\n"), NULL);
-	// 	// input = fill_argv(input, line, ptr_cpy - input);
-	// 	input += (ptr_cpy - input);
-	// 	ptr_cpy += 1;
-	// 	line->pipe = line->pipe->next;
-	// 	printf("NEW PIPE\n");
-	// 	input = fill_argv(input, line, ptr_cpy - input);
-	// }
-	// if (!input)
-	// 	return (NULL);
-	// return (ptr_cpy);
