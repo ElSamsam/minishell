@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:18 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/11 17:02:46 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/15 19:24:03 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static char	*tokenise(char *ptr, t_line *line)
 	cpy = ptr;
 	if (skip_redirection_operator(&cpy))
 		skip_white_spaces(&cpy);
+	if (is_redirection_operator(cpy))
+		return (printf("redir into %c\n", *cpy), NULL);
 	while (*cpy && !is_white_space(*cpy) && !is_redirection_operator(cpy) \
 		&& *cpy != '|')
 	{
@@ -75,8 +77,6 @@ static char	*tokenise(char *ptr, t_line *line)
 		else
 			cpy += 1;
 	}
-	if (is_redirection_operator(cpy))
-		return (printf("redir into %c\n", *cpy), NULL);
 	ptr = fill_argv(ptr, line, cpy - ptr);
 	if (!ptr)
 		return (NULL);

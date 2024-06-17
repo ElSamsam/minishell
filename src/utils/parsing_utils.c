@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:45:06 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/11 16:26:38 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:06:56 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ size_t	ft_tablen(char **str)
 }
 
 // TODO ADD redir->prev and redir->next
-// TODO Make one function for both redir->type and redir->filename
 bool	process_redir(t_line *line, char redir_operator)
 {
 	short			offset;

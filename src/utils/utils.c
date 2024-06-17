@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/09 21:46:47 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/15 19:55:14 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ char	*skip_quote_content(char *str, char quote)
 		str += 1;
 	while (*str && (!is_quote(*str, quote) || *str == '|'))
 	{
-		if (*str == '|')
-			*str *= -1;
-		if (quote == '"' && *str == '$')
+		if (*str == '|' || (quote == '\'' && *str == '$'))
 			*str *= -1;
 		str++;
 	}
@@ -61,13 +59,14 @@ char	*skip_quote_content(char *str, char quote)
 size_t	count_argv_nodes(t_line *line)
 {
 	size_t	node_count;
+	t_argv	*ptr;
 
 	node_count = 0;
-	while (line->argv && *line->argv->node != '|')
+	ptr = line->argv;
+	while (ptr && *ptr->node != '|')
 	{
 		node_count += 1;
-		line->argv = line->argv->next;
+		ptr = ptr->next;
 	}
-	line->argv = line->argv_head;
 	return (node_count);
 }

@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/11 17:00:03 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/15 19:19:19 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ bool	handle_redir(t_line *line)
 
 	operator = is_redirection_operator((line->argv->node));
 	if (operator == IN_REDIR && process_redir(line, IN_REDIR))
-		printf("\t    type: <\n\n");
+		printf("\t    type: <\n");
 	else if (operator == OUT_REDIR && process_redir(line, OUT_REDIR))
-		printf("\t    type: >\n\n");
+		printf("\t    type: >\n");
 	else if (operator == APPEND && process_redir(line, APPEND))
-		printf("\t    type: >>\n\n");
+		printf("\t    type: >>\n");
 	else if (operator == HEREDOC && process_redir(line, HEREDOC))
-		printf("\t    type: <<\n\n");
+		printf("\t    type: <<\n");
 	else
 		return (0);
 	return (1);

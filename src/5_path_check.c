@@ -6,8 +6,10 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:58:28 by saperrie          #+#    #+#             */
-/*   Updated: 2024/05/20 23:36:22 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:06:40 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "minishell.h"
+
+// TODO for export builtin, store < and > as negative in env during EXPAND, before handle_redir()

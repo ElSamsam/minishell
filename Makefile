@@ -6,7 +6,7 @@
 #    By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 01:12:35 by saperrie          #+#    #+#              #
-#    Updated: 2024/06/10 21:31:52 by saperrie         ###   ########.fr        #
+#    Updated: 2024/06/15 19:39:01 by saperrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ OBJECTS = $(patsubst src/%.c,$(OBJECT_DIR)%.o,\
 		  src/main.c \
 		  src/1_big_parse.c \
 		  src/2_lexing.c \
-		  src/3_expansion.c \
 		  src/4_parsing.c \
 		  src/5_path_check.c \
 		  src/utils/clean_quotes.c \
