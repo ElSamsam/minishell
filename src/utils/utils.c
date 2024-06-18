@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 22:10:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/09 21:46:47 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:42:02 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*skip_quote_content(char *str, char quote)
 	{
 		if (*str == '|')
 			*str *= -1;
-		if (quote == '"' && *str == '$')
+		if (quote == '\'' && *str == '$')
 			*str *= -1;
 		str++;
 	}

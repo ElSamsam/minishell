@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/11 16:31:02 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:20:53 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ typedef struct s_redir
 {
 	// int				redir_index;
 	char			type;
-	char			*filename;
-	// struct s_redir	*next;
-	// struct s_redir	*prev;
+	char			*fd;
+	struct s_redir	*next;
+	struct s_redir	*prev;
 }	t_redir;
 
 typedef struct s_pipe
 {
 	char			**arg;
 	t_redir			*redir;
+	t_redir			*redir_head;
 	struct s_pipe	*next;
 	struct s_pipe	*prev;
 }	t_pipe;
@@ -111,8 +112,9 @@ size_t		count_argv_nodes(t_line *line);
 // STRUCT
 
 // REDIRECTIONS
-bool		handle_redir(t_line *line);
-bool		process_redir(t_line *line, char redir_operator);
+bool		handle_redir(t_line *line, char	*first_redirection);
+bool		process_redir(t_line *line, char redir_operator, \
+	char *first_redirection);
 char		is_redirection_operator(char *str);
 char		skip_redirection_operator(char **str);
 char		redirection_offset(char redir_operator);

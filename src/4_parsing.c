@@ -6,11 +6,12 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/11 17:00:03 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:13:21 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdbool.h>
 
 
 static bool	tag_arg(t_line *line)
@@ -29,36 +30,37 @@ static bool	tag_arg(t_line *line)
 	return (true);
 }
 
-bool	handle_redir(t_line *line)
+bool	handle_redir(t_line *line, char	*first_redirection)
 {
 	char	operator;
 
 	operator = is_redirection_operator((line->argv->node));
-	if (operator == IN_REDIR && process_redir(line, IN_REDIR))
-		printf("\t    type: <\n\n");
-	else if (operator == OUT_REDIR && process_redir(line, OUT_REDIR))
-		printf("\t    type: >\n\n");
-	else if (operator == APPEND && process_redir(line, APPEND))
-		printf("\t    type: >>\n\n");
-	else if (operator == HEREDOC && process_redir(line, HEREDOC))
-		printf("\t    type: <<\n\n");
+	if (operator == IN_REDIR && process_redir(line, IN_REDIR, first_redirection))
+		printf("\ttype: <\n");
+	else if (operator == OUT_REDIR && process_redir(line, OUT_REDIR, first_redirection))
+		printf("\ttype: >\n");
+	else if (operator == APPEND && process_redir(line, APPEND, first_redirection))
+		printf("\ttype: >>\n");
+	else if (operator == HEREDOC && process_redir(line, HEREDOC, first_redirection))
+		printf("\ttype: <<\n");
 	else
 		return (0);
 	return (1);
 }
 
-static	bool	handle_pipe(t_line *line)
+static	bool	handle_pipe(t_line *line, char *first_redirection)
 {
 	line->pipe->next = ft_calloc(1, sizeof(t_pipe));
 	if (!line->pipe->next)
 		return (false);
 	line->pipe->next->prev = line->pipe;
 	line->pipe = line->pipe->next;
+	*first_redirection = 0;
 	printf("PIPE\n");
 	return (true);
 }
 
-static	bool	tag_tokens(t_line *line)
+static	bool	tag_tokens(t_line *line, char	*first_redirection)
 {
 	line->pipe = ft_calloc(1, sizeof(t_pipe));
 	if (!line->pipe)
@@ -70,12 +72,12 @@ static	bool	tag_tokens(t_line *line)
 	{
 		if (*line->argv->node == '|')
 		{
-			if (!handle_pipe(line))
+			if (!handle_pipe(line, first_redirection))
 				return (false);
 		}
 		else if (is_redirection_operator(line->argv->node))
 		{
-			if (!handle_redir(line))
+			if (!handle_redir(line, first_redirection))
 				return (false);
 		}
 		else
@@ -89,12 +91,16 @@ static	bool	tag_tokens(t_line *line)
 
 bool	parse(t_line *line)
 {
+	char	first_redirection;
+
+	first_redirection = 0;
 	line->argv = line->argv_head;
 	if (!clean_surrounding_quotes(line))
 		return (printf("clean_quotes_failed\n"), false);
 	line->argv = line->argv_head;
-	if (!tag_tokens(line))
+	if (!tag_tokens(line, &first_redirection))
 		return (false);
 	line->pipe = line->pipe_head;
+	line->pipe->redir = line->pipe->redir_head;
 	return (true);
 }

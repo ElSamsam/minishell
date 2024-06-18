@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/11 17:08:51 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:54:37 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static	bool	dirty_redir(char *str)
 				return (ft_putstr_fd \
 			("syntax error near unexpected token `newline'\n", 2), false);
 		}
-		str += 1;
+		else
+			str += 1;
 	}
 	return (true);
 }
