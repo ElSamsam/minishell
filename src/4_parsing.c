@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/19 18:13:21 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:00:12 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ bool	handle_redir(t_line *line, char	*first_redirection)
 	else if (operator == HEREDOC && process_redir(line, HEREDOC, first_redirection))
 		printf("\ttype: <<\n");
 	else
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
 
 static	bool	handle_pipe(t_line *line, char *first_redirection)
@@ -95,8 +95,8 @@ bool	parse(t_line *line)
 
 	first_redirection = 0;
 	line->argv = line->argv_head;
-	if (!clean_surrounding_quotes(line))
-		return (printf("clean_quotes_failed\n"), false);
+	// if (!clean_surrounding_quotes(line))
+	// 	return (printf("clean_quotes_failed\n"), false);
 	line->argv = line->argv_head;
 	if (!tag_tokens(line, &first_redirection))
 		return (false);

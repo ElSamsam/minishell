@@ -6,7 +6,7 @@
 #    By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 01:12:35 by saperrie          #+#    #+#              #
-#    Updated: 2024/06/18 23:32:04 by saperrie         ###   ########.fr        #
+#    Updated: 2024/06/25 16:23:01 by saperrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 INCLUDE_DIR = header/
 LIBFT_DIR = libft_improved/
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 IFLAGS = -I$(INCLUDE_DIR) -I$(LIBFT_DIR)
 DFLAGS = -MMD -MP
 LFLAGS = -L$(LIBFT_DIR) -lft -lreadline

@@ -6,7 +6,7 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:33:51 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/18 23:20:53 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:59:32 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include "libft.h"
+
+enum e_EXPAND_CASES
+{
+	NO_VALUE,
+	PRINT_DOLLAR,
+	SINGLE_VALUE,
+	VALUE_REST,
+	S1_VALUE,
+	S1_S2,
+};
 
 enum e_TOKENS
 {
@@ -40,7 +50,6 @@ enum e_REDIR_OPERATOR
 
 typedef struct s_redir
 {
-	// int				redir_index;
 	char			type;
 	char			*fd;
 	struct s_redir	*next;
