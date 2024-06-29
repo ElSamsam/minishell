@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4_parsing.c                                        :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:55:40 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/24 22:00:12 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:29:03 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static	bool	handle_pipe(t_line *line, char *first_redirection)
 	return (true);
 }
 
-static	bool	tag_tokens(t_line *line, char	*first_redirection)
+static	bool	tag_tokens(t_line *line, char *first_redirection)
 {
 	line->pipe = ft_calloc(1, sizeof(t_pipe));
 	if (!line->pipe)
@@ -95,8 +95,8 @@ bool	parse(t_line *line)
 
 	first_redirection = 0;
 	line->argv = line->argv_head;
-	// if (!clean_surrounding_quotes(line))
-	// 	return (printf("clean_quotes_failed\n"), false);
+	if (!clean_surrounding_quotes(line))
+		return (printf("clean_quotes_failed\n"), false);
 	line->argv = line->argv_head;
 	if (!tag_tokens(line, &first_redirection))
 		return (false);

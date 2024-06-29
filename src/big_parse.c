@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_big_parse.c                                      :+:      :+:    :+:   */
+/*   big_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:22:22 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/24 21:58:45 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/07/19 01:19:30 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 // if heredoc limiter contains quote : cat << "H"D
@@ -63,21 +62,20 @@ bool	big_parse(t_line *line, char **input)
 		return (false);
 	str = *input;
 	if (clean_input((char **)&str))
-		write(1, "CLEAN_INPUT\n", 12);
+		;//write(1, "CLEAN_INPUT\n", 12);
 	else
 		return (write(1, "BAD_INPUT\n", 10), false);
-	if (lex((char *)str, line))
-		printf("GOOD_LEX\n");
+	if (lex((char *)str, line, true))
+		;//printf("GOOD_LEX\n");
 	else
 		return (printf("BAD_LEX\n"), false);
 	if (expand(line))
-		printf("GOOD_EXPAND\n");
+		;//printf("GOOD_EXPAND\n");
 	else
-		return (printf(">:(\n"), false);
+		return (printf("BAD_$\n"), false);
 	if (parse(line))
-		printf("GOOD_PARSE\n");
+		;//printf("GOOD_PARSE\n");
 	else
 		return (printf("BAD_PARSE\n"), false);
-	// check_path(intput);
 	return (true);
 }

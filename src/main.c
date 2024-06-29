@@ -6,10 +6,11 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 06:39:58 by saperrie          #+#    #+#             */
-/*   Updated: 2024/06/11 16:58:17 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/06/29 23:13:50 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
 
 // (argc + argv + 1 = envp);in memory, thanks geymat for the tip
@@ -25,7 +26,7 @@ int	main(int argc, char *argv[], char *envp[])
 		line.env = envp;
 	while (13)
 	{
-		str = readline(">> minishell ");
+		str = readline("saperrie@42:~/goinfre/minishell$ ");
 		if (str)
 		{
 			add_history(str);
