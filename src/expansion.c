@@ -6,11 +6,13 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:49:30 by saperrie          #+#    #+#             */
-/*   Updated: 2024/07/18 01:08:49 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:34:02 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// TODO $KJGLET >>>> NULL    wheras     "$KJGLET" >>>>> CMD NOT FOUND (NULL IS THE CMD)
 
 static	char	*get_new_node(char *s1, char *value, char *rest)
 {
@@ -112,7 +114,7 @@ bool	expand(t_line *line)
 		line->argv = line->argv->next;
 	}
 	line->argv = line->argv_head;
-	// if (!potential_split_after_expand(line))
-	// 	return (false);
+	if (!potential_split_after_expand(line))
+		return (false);
 	return (true);
 }

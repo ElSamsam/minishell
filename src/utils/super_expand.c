@@ -6,36 +6,55 @@
 /*   By: saperrie <saperrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 01:03:09 by saperrie          #+#    #+#             */
-/*   Updated: 2024/07/19 01:51:53 by saperrie         ###   ########.fr       */
+/*   Updated: 2024/07/19 23:20:05 by saperrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	rearrange_prev_next_in_argv_nodes(t_line *line, char **strs)
+void	link_new_line_argv_to_line(t_line *new_line, t_line *line, int node_index)
+{
+	t_argv	*tmp_next;
+
+	new_line->argv = new_line->argv_head;
+	while (node_index != line->argv->node_index)
+		line->argv = line->argv->next;
+	line->argv->node = old_node;
+	line->argv->node = new_line->argv->node;
+	free(old_node);
+	line->argv->next = tmp_next;
+	line->argv->next = new_line->argv;
+	while (new_line->argv->next)
+		new_line->argv = new_line->argv->next;
+	new_line->argv->next = tmp_next;
+}
+
+bool	make_new_nodes(char **strs)
+{
+	new_line->argc = 0;
+	while (*strs)
+	{
+		new_line = make_argv_node(*strs, ft_strlen(*strs), new_line);
+		if (!new_line)
+			return (NULL);
+		*strs += 1;
+	}
+	return (new_line);
+}
+
+static bool	insert_new_nodes(t_line *line, char **new_nodes, int node_index)
 {
 	t_line	*new_line;
 
 	new_line = ft_calloc(1, sizeof(t_line));
 	if (!new_line)
-		return (false);
-	new_line->argc = 0;
-	while (*strs)
-		make_argv_node(*strs++, ft_strlen(*strs), new_line);
-}
-
-static bool	insert_new_nodes(t_line *line, char **new_nodes, int node_index)
-{
-	bool	rearranged;
-
-	rearranged = false;
-	while (node_index != line->argv->node_index)
-		line->argv = line->argv->next;
-	free(line->argv->node);
-	line->argv->node = *new_nodes;
-	rearranged = rearrange_prev_next_in_argv_nodes(line, new_nodes);
-	if (!rearranged)
+		return (NULL);
+	new_line = make_new_nodes(new_nodes);
+	if (!new_line)
 		return (true);
+	line = link_new_line_argv_to_line(new_line, line, node_index);
+	if (!line)
+		return (false);
 	return (false);
 }
 
